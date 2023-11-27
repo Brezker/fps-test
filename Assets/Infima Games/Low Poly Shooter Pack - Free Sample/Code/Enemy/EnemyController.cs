@@ -27,13 +27,8 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage()
     {
-        // Resta el daño de la vida actual
-        life -= 3.4f;  // Reducción de la vida
-
-        // Puedes agregar más lógica aquí, por ejemplo, activar una animación de recibir daño.
-        //animator.Play(HasAmmunition() ? "Reload" : "Reload Empty", 0, 0.0f);
-
-
+        // Resta el daño de la vida
+        life -= 3.4f;
         // Verifica si el enemigo ha quedado sin vida
         if (life <= 0)
         {
