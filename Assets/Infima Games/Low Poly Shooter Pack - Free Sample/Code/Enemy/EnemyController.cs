@@ -14,13 +14,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 3f;
         life = 100f;
-        InvokeRepeating(nameof(ApplyDamage), 1.0f, 1.0f);
     }
-    private void ApplyDamage()
-    {
-        TakeDamage(10f);
-    }
-
 
     void Update()
     {
@@ -31,10 +25,10 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage()
     {
         // Resta el daño de la vida actual
-        life -= 10f;  // Reducción de la vida
+        life -= 3.4f;  // Reducción de la vida
 
         // Puedes agregar más lógica aquí, por ejemplo, activar una animación de recibir daño.
         //animator.Play(HasAmmunition() ? "Reload" : "Reload Empty", 0, 0.0f);

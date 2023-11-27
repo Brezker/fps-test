@@ -21,6 +21,9 @@ public class Projectile : MonoBehaviour {
 	public Transform [] metalImpactPrefabs;
 	public Transform [] dirtImpactPrefabs;
 	public Transform []	concreteImpactPrefabs;
+	// Mine
+	private EnemyController enemyController;
+
 
 	private void Start ()
 	{
@@ -31,6 +34,13 @@ public class Projectile : MonoBehaviour {
 		
 		//Start destroy timer
 		StartCoroutine (DestroyAfter ());
+
+		// Mine
+		GameObject enemyObject = GameObject.FindGameObjectWithTag("Enemy");
+		if (enemyObject != null)
+		{
+			enemyController = enemyObject.GetComponent<EnemyController>();
+		}
 	}
 
 	//If the bullet collides with anything
@@ -118,6 +128,18 @@ public class Projectile : MonoBehaviour {
 				<TargetScript>().isHit = true;
 			//Destroy bullet object
 			Destroy(gameObject);
+		}
+
+		//If bullet collides with "Enemy" tag
+		if (collision.transform.tag == "Enemy") 
+		{
+			//Destroy bullet object
+			Destroy(gameObject);
+			print("atacado");
+			if (enemyController != null)
+			{
+				enemyController.TakeDamage();
+			}
 		}
 			
 		//If bullet collides with "ExplosiveBarrel" tag
