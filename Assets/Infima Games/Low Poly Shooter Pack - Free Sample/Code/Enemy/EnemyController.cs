@@ -15,7 +15,6 @@ public class EnemyController : MonoBehaviour
         agent.speed = 3f;
         life = 100f;
         InvokeRepeating(nameof(ApplyDamage), 1.0f, 1.0f);
-
     }
     private void ApplyDamage()
     {
