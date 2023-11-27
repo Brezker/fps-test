@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -202,7 +203,8 @@ namespace InfimaGames.LowPolyShooterPack
 			/// New code mine
 			life = 200f;
         	InvokeRepeating(nameof(ApplyDamage), 1.0f, 1.0f);
-		}
+
+        }
 
 		private void ApplyDamage()
 		{
@@ -226,21 +228,21 @@ namespace InfimaGames.LowPolyShooterPack
 			}
 		}
 
-		void Die()
-		{
-			Collider enemyCollider = GetComponent<Collider>();
-			print("dead");
-			SceneManager.LoadScene("GameOver");
-			/*
-			if (enemyCollider != null)
-			{
-				//enemyCollider.enabled = false;
-			}
-			*/
-			//Destroy(gameObject, 9f);
-		}
+        void Die()
+        {
+            // ... (código existente)
 
-		protected override void Update()
+            // Desbloquear el cursor al perder.
+            CursorManager cursorManager = FindObjectOfType<CursorManager>();
+            if (cursorManager != null)
+            {
+                cursorManager.UnlockCursor();
+            }
+
+            SceneManager.LoadScene("GameOver");
+        }
+
+        protected override void Update()
 		{
 			//Match Aim.
 			aiming = holdingButtonAim && CanAim();
