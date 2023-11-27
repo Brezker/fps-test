@@ -31,4 +31,15 @@ public class MainMenu : MonoBehaviour
         print("cierra juego");
         Debug.Log("cierra juego");
     }
+
+    public void OptionsScene()
+    {
+        SceneManager.LoadScene("Options");
+        Debug.Log("cargar opciones");
+    }
+    public void MenuScene()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Debug.Log("cargar opciones");
+    }
 }
