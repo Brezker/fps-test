@@ -170,8 +170,9 @@ namespace InfimaGames.LowPolyShooterPack
 		#region UNITY
 
 		private float life;
+		private bool isHealing = false;
 
-		protected override void Awake()
+        protected override void Awake()
 		{
 			#region Lock Cursor
 
@@ -202,7 +203,6 @@ namespace InfimaGames.LowPolyShooterPack
 
 			// New code mine
 			life = 100f;
-        	//InvokeRepeating(nameof(ApplyDamage), 1.0f, 1.0f);
 
         }
 
@@ -214,7 +214,30 @@ namespace InfimaGames.LowPolyShooterPack
             if (life <= 0)
             {
                 Die();
+            } else
+			{
+                if (!isHealing)
+                {
+                    isHealing = true;
+                    StartCoroutine(HealOverTime());
+                }
             }
+        }
+
+        private IEnumerator HealOverTime()
+        {
+            // Espera 3 segundos
+            yield return new WaitForSeconds(4f);
+
+            // Incrementa gradualmente la vida hasta llegar a 100
+            while (life < 100f)
+            {
+                life += 1f; // Puedes ajustar la velocidad de curación según sea necesario
+                yield return new WaitForSeconds(0.1f); // Espera un breve momento antes de la próxima incrementación
+            }
+
+            // Restaura la variable de curación
+            isHealing = false;
         }
 
         void Die()
