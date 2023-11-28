@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using InfimaGames.LowPolyShooterPack;
 
 public class EnemyController : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class EnemyController : MonoBehaviour
     private Animator anim;
     private float life;
     // Factor para ajustar la fuerza del empujón
-    public float pushForce = 5.0f;
+    public float pushForce = 50.0f;
 
     void Start()
     {
@@ -25,6 +26,20 @@ public class EnemyController : MonoBehaviour
         anim.SetFloat("Moves", 1f);
         // Agregar un if take damage
         
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // Verificar si el objeto con el que colisionamos es el jugador
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Llamar a la función TakeDamage en el script del jugador
+            collision.gameObject.GetComponent<Character>().TakeDamage();
+
+            print("Tocando");
+
+            
+        }
     }
 
     public void TakeDamage()

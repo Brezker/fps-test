@@ -200,33 +200,22 @@ namespace InfimaGames.LowPolyShooterPack
 			//Cache a reference to the overlay layer's index.
 			layerOverlay = characterAnimator.GetLayerIndex("Layer Overlay");
 
-			/// New code mine
-			life = 200f;
-        	InvokeRepeating(nameof(ApplyDamage), 1.0f, 1.0f);
+			// New code mine
+			life = 100f;
+        	//InvokeRepeating(nameof(ApplyDamage), 1.0f, 1.0f);
 
         }
 
-		private void ApplyDamage()
-		{
-			TakeDamage(50f);
-			print(life);
-		}
-
-		public void TakeDamage(float damage)
-		{
-			// Resta el daño de la vida actual
-			life -= 10f;  // Reducción de la vida
-
-			// Puedes agregar más lógica aquí, por ejemplo, activar una animación de recibir daño.
-			//animator.Play(HasAmmunition() ? "Reload" : "Reload Empty", 0, 0.0f);
-
-
-			// Verifica si el enemigo ha quedado sin vida
-			if (life <= 0)
-			{
-				Die();
-			}
-		}
+        public void TakeDamage()
+        {
+            // Resta el daño de la vida
+            life -= 50f;
+            // Verifica si el enemigo ha quedado sin vida
+            if (life <= 0)
+            {
+                Die();
+            }
+        }
 
         void Die()
         {
