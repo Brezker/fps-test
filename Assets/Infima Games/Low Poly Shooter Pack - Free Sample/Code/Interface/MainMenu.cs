@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void GameScene()
     {
-        SceneManager.LoadScene("S_Content_Overview");
+        SceneManager.LoadScene("Nivel2");
         print("cragar juego");
         Debug.Log("cargar juego");
     }
