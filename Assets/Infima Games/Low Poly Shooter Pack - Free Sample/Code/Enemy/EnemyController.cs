@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
     private float life;
+    // Factor para ajustar la fuerza del empujón
+    public float pushForce = 5.0f;
 
     void Start()
     {
